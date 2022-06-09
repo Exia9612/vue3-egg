@@ -1,8 +1,11 @@
 import { Controller } from 'egg';
+import { IGetNewsListParams } from '../../typings';
 
-export default class HomeController extends Controller {
-  public async getNewsList() {
+export default class ApiController extends Controller {
+  public async getNewsList(): Promise<void> {
     const { ctx } = this;
-    ctx.body = await ctx.service.api.getNewsList();
+    const { type, pageNum, count }: IGetNewsListParams = ctx.request.body
+
+    ctx.body = await ctx.service.api.getNewsList( { type, pageNum, count });
   }
 }

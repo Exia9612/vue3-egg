@@ -1,5 +1,11 @@
 import 'egg';
 
+interface IGetNewsListParams {
+  type: string,
+  pageNum: number,
+  count: number
+}
+
 interface IHttpGetParams {
   url: string,
   data: any,
@@ -7,6 +13,25 @@ interface IHttpGetParams {
   fail: (error: any) => void
 }
 
+interface IPageData<T> {
+  data: Array<T> | null,
+  hasMore: boolean
+}
+
+interface INewsData {
+  uniquekey: string,
+  title: string,
+  data: string,
+  category: string,
+  author_name: string,
+  url: string,
+  thumbnail_pic_s?: string,
+  thumbnail_pic_s02?: string,
+  thumbnail_pic_s03?: string
+}
+
 declare module 'egg' {
-  IHttpGetParams
+  IHttpGetParams,
+  IGetNewsListParams,
+  IPageData
 }
